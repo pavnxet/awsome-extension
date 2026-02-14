@@ -1,81 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Awesome Tools</title>
-  <link rel="stylesheet" href="css/popup.css">
-  <script src="lib/qrcode.min.js"></script>
+    <style>
+        :root { --primary: #ef4444; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; }
+        body { width: 280px; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; margin: 0; padding: 15px; }
+        .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .logo-box { display: flex; align-items: center; gap: 8px; }
+        .logo { font-size: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* Switch */
+        .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .4s; border-radius: 20px; }
+        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        .card { background: var(--card); border-radius: 12px; padding: 12px; border: 1px solid #334155; margin-bottom: 10px; }
+        .status-box { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+        .dot { height: 8px; width: 8px; background: #22c55e; border-radius: 50%; display: inline-block; }
+        .dot.off { background: #64748b; }
+
+        /* Pass Gen Styling */
+        .box-title { font-size: 11px; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .pass-display { background: #0f172a; padding: 8px; border-radius: 6px; font-family: monospace; font-size: 13px; color: #fbbf24; text-align: center; margin-bottom: 8px; border: 1px dashed #334155; overflow: hidden; }
+        .btn-row { display: flex; gap: 5px; }
+        button { flex: 1; background: #334155; border: none; color: white; padding: 6px; border-radius: 6px; cursor: pointer; font-size: 11px; transition: 0.2s; }
+        button:hover { background: #475569; }
+        .btn-primary { background: var(--primary); }
+        .btn-primary:hover { background: #dc2626; }
+
+        .footer { text-align: center; font-size: 10px; color: #64748b; margin-top: 10px; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="password">Password</button>
-      <button class="tab-btn" data-tab="qrcode">QR Code</button>
-      <button class="tab-btn" data-tab="tools">Text Tools</button>
-      <button class="tab-btn" data-tab="converter">Converter</button>
+    <div class="header">
+        <div class="logo-box">
+            <span class="logo">⚡</span>
+            <strong>SPEEDDRAIN PRO</strong>
+        </div>
+        <label class="switch">
+            <input type="checkbox" id="mainToggle" checked>
+            <span class="slider"></span>
+        </label>
     </div>
 
-    <div class="content">
-      <!-- Password Generator -->
-      <div id="password" class="tab-content active">
-        <h2>Password Generator</h2>
-        <div class="control-group">
-          <label for="pwd-length">Length: <span id="pwd-length-val">12</span></label>
-          <input type="range" id="pwd-length" min="4" max="32" value="12">
+    <div class="card">
+        <div class="status-box">
+            <span class="dot" id="statusDot"></span>
+            <span id="statusText">Service: <strong>Active</strong></span>
         </div>
-        <div class="checkbox-group">
-          <label><input type="checkbox" id="pwd-upper" checked> Uppercase</label>
-          <label><input type="checkbox" id="pwd-lower" checked> Lowercase</label>
-          <label><input type="checkbox" id="pwd-numbers" checked> Numbers</label>
-          <label><input type="checkbox" id="pwd-symbols" checked> Symbols</label>
-        </div>
-        <button id="generate-pwd" class="primary-btn">Generate</button>
-        <div class="result-box">
-          <input type="text" id="pwd-result" readonly>
-          <button id="copy-pwd">Copy</button>
-        </div>
-      </div>
-
-      <!-- QR Code Generator -->
-      <div id="qrcode" class="tab-content">
-        <h2>QR Code Generator</h2>
-        <input type="text" id="qr-input" placeholder="Enter text or URL">
-        <button id="generate-qr" class="primary-btn">Generate QR</button>
-        <div id="qr-output"></div>
-      </div>
-
-      <!-- Text Tools -->
-      <div id="tools" class="tab-content">
-        <h2>Text Tools</h2>
-        <textarea id="text-input" rows="5" placeholder="Type or paste text here..."></textarea>
-        <div class="stats">
-          <span>Words: <span id="word-count">0</span></span>
-          <span>Chars: <span id="char-count">0</span></span>
-        </div>
-        <button id="lorem-ipsum" class="secondary-btn">Insert Lorem Ipsum</button>
-      </div>
-
-      <!-- Converter -->
-      <div id="converter" class="tab-content">
-        <h2>Converters</h2>
-        
-        <h3>Color Converter</h3>
-        <div class="converter-group">
-          <input type="text" id="color-hex" placeholder="#FFFFFF">
-          <span class="arrow">→</span>
-          <input type="text" id="color-rgb" readonly placeholder="rgb(255, 255, 255)">
-        </div>
-
-        <h3>Unix Timestamp</h3>
-        <div class="converter-group">
-          <input type="text" id="timestamp-input" placeholder="Timestamp">
-          <button id="convert-time" class="secondary-btn">Convert</button>
-        </div>
-        <div id="time-output"></div>
-        <button id="current-time" class="secondary-btn">Get Current Timestamp</button>
-      </div>
     </div>
-  </div>
-  <script src="js/popup.js"></script>
+
+    <div class="card">
+        <span class="box-title">Secure Password (14 Chars)</span>
+        <div id="passOut" class="pass-display">Click Generate</div>
+        <div class="btn-row">
+            <button id="genBtn" class="btn-primary">Generate</button>
+            <button id="copyBtn">Copy</button>
+        </div>
+    </div>
+
+    <div class="footer">Stealth Mode is Enabled</div>
+    <script src="popup.js"></script>
 </body>
 </html>
