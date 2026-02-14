@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Awesome Tools</title>
+  <link rel="stylesheet" href="css/popup.css">
+  <script src="lib/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="password">Password</button>
+      <button class="tab-btn" data-tab="qrcode">QR Code</button>
+      <button class="tab-btn" data-tab="tools">Text Tools</button>
+      <button class="tab-btn" data-tab="converter">Converter</button>
+    </div>
+
+    <div class="content">
+      <!-- Password Generator -->
+      <div id="password" class="tab-content active">
+        <h2>Password Generator</h2>
+        <div class="control-group">
+          <label for="pwd-length">Length: <span id="pwd-length-val">12</span></label>
+          <input type="range" id="pwd-length" min="4" max="32" value="12">
+        </div>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="pwd-upper" checked> Uppercase</label>
+          <label><input type="checkbox" id="pwd-lower" checked> Lowercase</label>
+          <label><input type="checkbox" id="pwd-numbers" checked> Numbers</label>
+          <label><input type="checkbox" id="pwd-symbols" checked> Symbols</label>
+        </div>
+        <button id="generate-pwd" class="primary-btn">Generate</button>
+        <div class="result-box">
+          <input type="text" id="pwd-result" readonly>
+          <button id="copy-pwd">Copy</button>
+        </div>
+      </div>
+
+      <!-- QR Code Generator -->
+      <div id="qrcode" class="tab-content">
+        <h2>QR Code Generator</h2>
+        <input type="text" id="qr-input" placeholder="Enter text or URL">
+        <button id="generate-qr" class="primary-btn">Generate QR</button>
+        <div id="qr-output"></div>
+      </div>
+
+      <!-- Text Tools -->
+      <div id="tools" class="tab-content">
+        <h2>Text Tools</h2>
+        <textarea id="text-input" rows="5" placeholder="Type or paste text here..."></textarea>
+        <div class="stats">
+          <span>Words: <span id="word-count">0</span></span>
+          <span>Chars: <span id="char-count">0</span></span>
+        </div>
+        <button id="lorem-ipsum" class="secondary-btn">Insert Lorem Ipsum</button>
+      </div>
+
+      <!-- Converter -->
+      <div id="converter" class="tab-content">
+        <h2>Converters</h2>
+        
+        <h3>Color Converter</h3>
+        <div class="converter-group">
+          <input type="text" id="color-hex" placeholder="#FFFFFF">
+          <span class="arrow">→</span>
+          <input type="text" id="color-rgb" readonly placeholder="rgb(255, 255, 255)">
+        </div>
+
+        <h3>Unix Timestamp</h3>
+        <div class="converter-group">
+          <input type="text" id="timestamp-input" placeholder="Timestamp">
+          <button id="convert-time" class="secondary-btn">Convert</button>
+        </div>
+        <div id="time-output"></div>
+        <button id="current-time" class="secondary-btn">Get Current Timestamp</button>
+      </div>
+    </div>
+  </div>
+  <script src="js/popup.js"></script>
+</body>
+</html>

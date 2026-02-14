@@ -1,0 +1,172 @@
+body {
+  width: 400px;
+  height: 500px;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tabs {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #555;
+  transition: all 0.3s;
+}
+
+.tab-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.tab-btn.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.control-group {
+  margin-bottom: 15px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  transition: background-color 0.3s;
+}
+
+.primary-btn {
+  background-color: #007bff;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.primary-btn:hover {
+  background-color: #0056b3;
+}
+
+.secondary-btn {
+  background-color: #6c757d;
+  color: white;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.secondary-btn:hover {
+  background-color: #5a6268;
+}
+
+.result-box {
+  display: flex;
+  margin-top: 15px;
+}
+
+#pwd-result {
+  flex: 1;
+  margin-bottom: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+#copy-pwd {
+  border-radius: 0 4px 4px 0;
+  background-color: #28a745;
+  color: white;
+}
+
+#copy-pwd:hover {
+  background-color: #218838;
+}
+
+#qr-output {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#qr-output img {
+  max-width: 100%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.converter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.arrow {
+  font-weight: bold;
+}
+
+#time-output {
+  margin-top: 5px;
+  font-family: monospace;
+  color: #007bff;
+}
